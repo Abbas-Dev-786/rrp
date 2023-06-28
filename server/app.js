@@ -5,8 +5,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://rrp-amb.netlify.app/",
-    allowedHeaders: "https://rrp-amb.netlify.app/",
+    origin: "*",
+    allowedHeaders: "*",
   })
 );
 
