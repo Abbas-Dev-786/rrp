@@ -1,0 +1,23 @@
+.win_img {
+  position: absolute;
+  width: 250px;
+  right: calc(50% - 125px);
+  top: 170px;
+  transform: rotate(15deg);
+}
+
+.lose_img {
+  position: absolute;
+  width: 250px;
+  right: calc(50% - 125px);
+  top: 170px;
+  transform: rotate(15deg);
+}
+
+.tie_img {
+  position: absolute;
+  width: 260px;
+  right: calc(50% - 130px);
+  top: 180px;
+  transform: rotate(15deg);
+}

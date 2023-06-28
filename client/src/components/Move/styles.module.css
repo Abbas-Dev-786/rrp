@@ -1,0 +1,23 @@
+.left {
+  margin-left: -15px;
+}
+
+.right {
+  margin-right: -15px;
+}
+
+.rock_left_hand_img {
+  width: 350px;
+  transition: 0.2s all ease-in;
+}
+
+.scissors_left_hand_img {
+  width: 400px;
+  margin-top: 25px;
+  transition: 0.2s all ease-in;
+}
+
+.paper_left_hand_img {
+  width: 430px;
+  transition: 0.2s all ease-in;
+}

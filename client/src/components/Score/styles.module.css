@@ -1,0 +1,49 @@
+/* scores */
+.scores_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player_info {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#person1 {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--orange);
+}
+
+#person2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--red);
+}
+
+.star_container {
+  margin-left: 20px;
+}
+
+.star {
+  color: white;
+  font-size: 30px;
+  margin: 0 4px;
+}
+
+.active_star {
+  color: var(--yellow);
+}

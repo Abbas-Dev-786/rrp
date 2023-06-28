@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "\"realtime multiplayer rock paper scissors game using socket.io\"",
+  "main": "index.js",
+  "author": "Abbas Bhanpura wala",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "socket.io": "^4.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
