@@ -17,8 +17,6 @@ module.exports.SocketServer = function (io) {
   io.on("connection", (socket) => {
     let room;
 
-    console.log(socket.handshake);
-
     console.log("a user connected");
 
     socket.on("init:stranger", () => {

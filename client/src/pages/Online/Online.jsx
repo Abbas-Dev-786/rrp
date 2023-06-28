@@ -12,13 +12,11 @@ import { socket } from "../../socket";
 import gameLogic from "../../gameLogic";
 import styles from "./styles.module.css";
 
-// const OPTIONS = ["rock", "paper", "scissors"];
-
 const Online = () => {
   const [p1Score, setP1Score] = useState(0);
   const [p2Score, setP2Score] = useState(0);
-  const [playerMove, setPlayerMove] = useState();
-  const [computerMove, setComputerMove] = useState();
+  const [myMove, setMyMove] = useState();
+  const [oppMove, setOppoMove] = useState();
   const [result, setResult] = useState(null);
   const [winner, setWinner] = useState(null);
 
@@ -27,7 +25,7 @@ const Online = () => {
   const [anchor, setAnchor] = useState("");
 
   const calculateScore = () => {
-    const result = gameLogic(playerMove, computerMove);
+    const result = gameLogic(myMove, oppMove);
 
     if (result === "player1") {
       setResult("win");
@@ -49,15 +47,15 @@ const Online = () => {
   };
 
   const handleClick = (value) => {
-    setPlayerMove(value);
+    setMyMove(value);
 
     socket.emit("move", { player: socket.id, move: value });
 
     socket.on("move", (moves) => {
       moves.forEach((move) => {
         move.player === socket.id
-          ? setPlayerMove(move.move)
-          : setComputerMove(move.move);
+          ? setMyMove(move.move)
+          : setOppoMove(move.move);
       });
     });
   };
@@ -81,17 +79,17 @@ const Online = () => {
 
   useEffect(() => {
     checkWin();
-    calculateScore(playerMove, computerMove);
+    calculateScore(myMove, oppMove);
 
     //eslint-disable-next-line
-  }, [computerMove]);
+  }, [oppMove]);
 
   useEffect(() => {
     let interval;
     if (result) {
       interval = setInterval(() => {
-        setPlayerMove();
-        setComputerMove();
+        setMyMove();
+        setOppoMove();
         setResult(null);
       }, 1000);
     }
@@ -102,25 +100,27 @@ const Online = () => {
   return (
     <GameContainer>
       <Score p1Score={p1Score} p2Score={p2Score} />
-      <div className={styles.action_container}>
-        {!playerMove && waiting ? (
-          <Move option={playerMove} direction="left" />
-        ) : (
-          <Waiting type="wait-me" />
-        )}
-        {!computerMove && waiting ? (
-          <Move option={computerMove} direction="right" />
-        ) : (
-          <Waiting type="wait-op" />
-        )}
-      </div>
+      {!waiting && !winner && (
+        <div className={styles.action_container}>
+          {myMove ? (
+            <Move option={myMove} direction="left" />
+          ) : (
+            <Waiting type="wait-me" />
+          )}
+          {oppMove ? (
+            <Move option={oppMove} direction="right" />
+          ) : (
+            <Waiting type="wait-op" />
+          )}
+        </div>
+      )}
       {result && <Result resultText={result} />}
       {waiting && <Waiting type="fetch" />}
       {winner && <Board result={winner} />}
       <div></div>
       <div></div>
-      {!winner && !waiting && !playerMove && (
-        <Controls move={playerMove} handleClick={handleClick} />
+      {!winner && !waiting && !myMove && (
+        <Controls move={myMove} handleClick={handleClick} />
       )}
     </GameContainer>
   );
