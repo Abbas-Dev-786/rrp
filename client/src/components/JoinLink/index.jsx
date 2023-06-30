@@ -1,12 +1,20 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+
 import styles from "./styles.module.css";
 
-const JoinLink = ({ link }) => {
+const URL = import.meta.env.PROD
+  ? "https://rrp-amb.netlify.com"
+  : "http://localhost:5173";
+
+const PATH = "/online/friend/room/";
+
+const JoinLink = ({ roomID }) => {
   const [active, setActive] = useState(false);
 
   const handleChange = () => {
     setActive(true);
-    navigator.clipboard.writeText(link);
+    navigator.clipboard.writeText(`${URL}${PATH}${roomID}`);
   };
 
   return (
@@ -22,7 +30,7 @@ const JoinLink = ({ link }) => {
         }
         onClick={handleChange}
       >
-        {link}
+        {`${URL}${PATH}${roomID}`}
       </button>
       <h2 className={styles.join_link_text}>
         Send this link to your friend to connect.
@@ -30,5 +38,7 @@ const JoinLink = ({ link }) => {
     </div>
   );
 };
+
+JoinLink.propTypes = { roomID: PropTypes.any };
 
 export default JoinLink;

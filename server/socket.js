@@ -19,8 +19,32 @@ module.exports.SocketServer = function (io) {
 
     console.log("a user connected");
 
+    socket.on("check-room", (roomID) => {
+      const rooms = Object.keys(obj);
+
+      socket.emit("room:status", rooms.includes(roomID));
+    });
+
     socket.on("init:stranger", () => {
       room = "room" + Math.floor(readyPlayerCount / 2);
+      socket.join(room);
+
+      obj[room] = {};
+
+      console.log("Player ready", socket.id, room);
+
+      readyPlayerCount++;
+
+      io.in(room).emit("fetch", readyPlayerCount % 2 === 0 ? false : true);
+
+      if (readyPlayerCount % 2 === 0) {
+        obj[room].anchor = socket.id;
+        io.in(room).emit("startGame", obj[room].anchor);
+      }
+    });
+
+    socket.on("init:friend", (roomID) => {
+      room = roomID;
       socket.join(room);
 
       obj[room] = {};

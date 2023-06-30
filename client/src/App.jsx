@@ -2,11 +2,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import Computer from "./pages/Computer/Computer";
-import Online from "./pages/Online/Online";
+import Stranger from "./pages/Strangers/Online";
+import Friend from "./pages/Friends/Online";
 import PageNotFound from "./pages/PageNotFound";
 
 import background_img from "./assets/background.png";
 import "./App.css";
+import CreateRoom from "./pages/CreateRoom";
 
 const App = () => {
   return (
@@ -19,10 +21,13 @@ const App = () => {
         />
         <div className="container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route index path="/" element={<Home />} />
             <Route path="/computer" element={<Computer />} />
-            <Route path="/online/stranger" element={<Online />} />
-            <Route path="/online/friend" element={<Online />} />
+            <Route path="/online/stranger" element={<Stranger />} />
+            <Route path="/online/friend" element={<CreateRoom />}>
+              <Route index path="room" element={<CreateRoom />} />
+              <Route path="room/:roomid" element={<Friend />} />
+            </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
