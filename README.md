@@ -1,5 +1,5 @@
 
-# Realtime Multiplayer Rock Paper Scissors Game
+# 📈 Realtime Multiplayer Rock Paper Scissors Game 🕹
 
 This is a simple yet exciting realtime multiplayer Rock Paper Scissors game built using React, Socket.io, Node.js, and Express.js. Players can engage in thrilling battles with their friends or other online opponents or also they can play with bot.
 
