@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 
 // const URL =
 const URL = import.meta.env.PROD
-  ? "rrp-amb.up.railway.app"
+  ? "https://rock-paper-scissor-ph4d.onrender.com"
   : "http://localhost:8000";
 
 export const socket = io(URL, {
